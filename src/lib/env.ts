@@ -29,4 +29,4 @@ export function requireEnv(name: string): string {
 adminEmails: (process.env.ADMIN_EMAILS || "")
   .split(",")
   .map((v) => v.trim().toLowerCase())
-  .filter(Boolean),
+  .filter(Boolean)
