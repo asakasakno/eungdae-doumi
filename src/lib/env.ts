@@ -25,8 +25,3 @@ export function requireEnv(name: string): string {
   }
   return value;
 }
-
-adminEmails: (process.env.ADMIN_EMAILS || "")
-  .split(",")
-  .map((v) => v.trim().toLowerCase())
-  .filter(Boolean)

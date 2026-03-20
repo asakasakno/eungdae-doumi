@@ -17,7 +17,7 @@ export async function getUsageSummary(supabase: SupabaseClient, userId: string):
       used_count: 0,
       daily_limit: 999999,
       remaining_count: 999999,
-      plan: "admin",
+      plan: "pro",
     };
   }
 
