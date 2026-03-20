@@ -3,8 +3,24 @@ import type { UsageSummary } from "@/types/app";
 import { getOrCreateSubscription } from "@/lib/auth";
 import { getDailyLimit } from "@/lib/plans";
 import { getKstDateString } from "@/lib/utils";
+import { env } from "@/lib/env";
 
 export async function getUsageSummary(supabase: SupabaseClient, userId: string): Promise<UsageSummary> {
+  // 🔥 현재 로그인 유저 이메일 가져오기
+  const { data: authData } = await supabase.auth.getUser();
+  const email = authData.user?.email?.toLowerCase() || "";
+
+  // 🔥 관리자면 무제한
+  if (env.adminEmails.includes(email)) {
+    return {
+      date: getKstDateString(),
+      used_count: 0,
+      daily_limit: 999999,
+      remaining_count: 999999,
+      plan: "admin",
+    };
+  }
+
   const subscription = await getOrCreateSubscription(supabase, userId);
   const plan = subscription.plan;
   const date = getKstDateString();
