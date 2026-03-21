@@ -6,11 +6,9 @@ import { getKstDateString } from "@/lib/utils";
 import { env } from "@/lib/env";
 
 export async function getUsageSummary(supabase: SupabaseClient, userId: string): Promise<UsageSummary> {
-  // 🔥 현재 로그인 유저 이메일 가져오기
   const { data: authData } = await supabase.auth.getUser();
   const email = authData.user?.email?.toLowerCase() || "";
 
-  // 🔥 관리자면 무제한
   if (env.adminEmails.includes(email)) {
     return {
       date: getKstDateString(),
