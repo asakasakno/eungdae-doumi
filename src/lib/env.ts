@@ -12,6 +12,7 @@ export const env = {
   proDailyLimit: toNumber(process.env.PRO_DAILY_LIMIT, 9999),
   enableBilling: process.env.ENABLE_BILLING === "true",
   publicEnableBilling: process.env.NEXT_PUBLIC_ENABLE_BILLING === "true",
+  paymentProvider: process.env.PAYMENT_PROVIDER || "manual",
   adminEmails: (process.env.ADMIN_EMAILS || "")
     .split(",")
     .map((v) => v.trim().toLowerCase())
