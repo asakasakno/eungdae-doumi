@@ -18,6 +18,7 @@ const links = [
   { href: "/dashboard/complaint", label: "클레임 대응 생성" },
   { href: "/dashboard/history", label: "생성 이력" },
   { href: "/dashboard/settings", label: "설정" },
+  { label: "관리자", href: "/dashboard/admin" },
 ];
 
 export function Sidebar({ profile, appName }: SidebarProps) {
